@@ -2,28 +2,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/miItem1"
-        android:title="E-Commerce" />
+        android:title="@string/menu_ecommerce" />
     <item
         android:id="@+id/miItem2"
-        android:title="APMC Updates" />
+        android:title="@string/menu_apmc_updates" />
     <item
         android:id="@+id/miItem3"
-        android:title="Create Post" />
+        android:title="@string/menu_create_post" />
     <item
         android:id="@+id/miItem4"
-        android:title="Community Network" />
+        android:title="@string/menu_community_network" />
     <item
         android:id="@+id/miItem5"
-        android:title="Weather Forecast" />
-    <item
-        android:id="@+id/miItem6"
-        android:title="Fruits Articles" />
+        android:title="@string/menu_weather_forecast" />
     <item
         android:id="@+id/miItem7"
-        android:title="My Orders" />
+        android:title="@string/menu_my_order" />
     <item
-        android:id="@+id/miItem8"
-        android:title="Log Out" />
+        android:id="@+id/skdroid_change_language_button"
+        android:title="@string/menu_change_language" />
+    <item
+        android:id="@+id/logout_button"
+        android:title="@string/menu_logout" />
 
 
 </menu>

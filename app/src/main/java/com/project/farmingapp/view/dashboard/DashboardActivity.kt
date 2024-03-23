@@ -8,6 +8,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
@@ -18,18 +19,12 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.PersistableBundle
 import android.provider.Settings
-import android.service.autofill.UserData
-import android.util.AttributeSet
 import android.util.Log
-import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
-import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
@@ -37,30 +32,20 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.bumptech.glide.Glide.with
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.project.farmingapp.R
-import com.project.farmingapp.adapter.CurrentWeatherAdapter
-import com.project.farmingapp.adapter.WeatherAdapter
 import com.project.farmingapp.databinding.ActivityDashboardBinding
-import com.project.farmingapp.model.WeatherApi
-import com.project.farmingapp.model.data.Weather
-import com.project.farmingapp.model.data.WeatherList
 import com.project.farmingapp.model.data.WeatherRootList
 import com.project.farmingapp.view.apmc.ApmcFragment
 import com.project.farmingapp.view.articles.ArticleListFragment
-import com.project.farmingapp.view.articles.FruitsFragment
 import com.project.farmingapp.view.auth.LoginActivity
 import com.project.farmingapp.view.ecommerce.*
 import com.project.farmingapp.view.introscreen.IntroActivity
@@ -71,20 +56,10 @@ import com.project.farmingapp.view.weather.WeatherFragment
 import com.project.farmingapp.viewmodel.UserDataViewModel
 import com.project.farmingapp.viewmodel.UserProfilePostsViewModel
 import com.project.farmingapp.viewmodel.WeatherViewModel
-import com.squareup.picasso.Picasso
-import com.squareup.picasso.PicassoProvider
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.fragment_weather.*
-import kotlinx.android.synthetic.main.nav_header.*
 import kotlinx.android.synthetic.main.nav_header.view.*
-import org.w3c.dom.Document
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
 import java.util.*
-import kotlin.collections.ArrayList
 
 class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, com.google.android.gms.location.LocationListener  {
     lateinit var cartFragment: CartFragment
@@ -197,12 +172,12 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             .setReorderingAllowed(true)
             .commit()
 
-        bottomNav.selectedItemId = R.id.bottomNavHome
+        bottomNav.selectedItemId = R.id.btnChangeLanguage
 
         val something = navView.getHeaderView(0);
 
         if (dashboardFragment.isVisible) {
-            bottomNav.selectedItemId = R.id.bottomNavHome
+            bottomNav.selectedItemId = R.id.btnChangeLanguage
         }
 
         something.setOnClickListener {
@@ -241,7 +216,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                         commit()
                     }
                 }
-                R.id.bottomNavHome -> {
+                R.id.btnChangeLanguage -> {
                     supportFragmentManager.beginTransaction().apply {
                         replace(R.id.frame_layout, dashboardFragment, "dashFrag")
                         setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -324,7 +299,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        bottomNav.selectedItemId = R.id.bottomNavHome
+        bottomNav.selectedItemId = R.id.btnChangeLanguage
         when (item.itemId) {
 
             R.id.miItem1 -> {
@@ -377,16 +352,6 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                     .addToBackStack("weatherFrag")
                     .commit()
             }
-            R.id.miItem6 -> {
-                articleListFragment = ArticleListFragment()
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.frame_layout, articleListFragment, "articleListFrag")
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .setReorderingAllowed(true)
-                    .addToBackStack("articleListFrag")
-                    .commit()
-            }
             R.id.miItem7 -> {
                 supportFragmentManager
                     .beginTransaction()
@@ -396,7 +361,25 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                     .addToBackStack("myOrdersFrag")
                     .commit()
             }
-            R.id.miItem8 -> {
+            R.id.skdroid_change_language_button -> {
+                print("clicked language change button")
+                println("Hello, world!")
+                Log.i("TAG", "Info message")
+
+                val currentLocal = getCurrentLocale()
+                Log.i("Language", currentLocal.toString())
+                Log.i("Language", Locale.ENGLISH.toString())
+
+
+                if (getCurrentLocale() == "en") {
+                    setLocale(Locale("hi")) // Set to Hindi
+                } else {
+                    setLocale(Locale.ENGLISH) // Set to English
+                }
+                recreate() // Reload the activity to apply changes
+//                return true
+            }
+            R.id.logout_button -> {
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Log Out")
                     .setMessage("Do you want to logout?")
@@ -414,6 +397,20 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun setLocale(locale: Locale) {
+        val resources = resources
+
+        val configuration = Configuration(resources.configuration)
+        configuration.setLocale(locale)
+        Log.i("LANGUAGE", configuration.toString())
+        resources.updateConfiguration(configuration, resources.displayMetrics)
+    }
+
+    private fun getCurrentLocale(): String {
+        Log.i("LANGUAGE", resources.configuration.locale.toString())
+        return resources.configuration.locale.toString()
     }
 
     override fun onBackPressed() {

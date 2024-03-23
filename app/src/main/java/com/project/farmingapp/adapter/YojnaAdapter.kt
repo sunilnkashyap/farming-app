@@ -43,7 +43,7 @@ class YojnaAdapter(val context: Context, val yojnaData: List<DocumentSnapshot>, 
             .into(holder.yojnaImage)
 
         holder.yojnaCard.setOnClickListener {
-            cellClickListener.onCellClickListener(singleYojna.data!!.get("title").toString())
+            // cellClickListener.onCellClickListener(singleYojna.data!!.get("title").toString())
         }
     }
 

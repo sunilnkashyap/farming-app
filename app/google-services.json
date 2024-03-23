@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "392700576716",
+    "firebase_url": "https://farmer-kotlin-default-rtdb.firebaseio.com",
     "project_id": "farmer-kotlin",
     "storage_bucket": "farmer-kotlin.appspot.com"
   },

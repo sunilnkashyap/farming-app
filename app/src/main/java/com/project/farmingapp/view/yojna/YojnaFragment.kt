@@ -81,6 +81,8 @@ class YojnaFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.title = "Krishi Yojna"
         progressYojna.visibility = View.VISIBLE
 
+        Log.d("Sunil", "Here on fragment")
+
         yojnaViewModel.msg.observe(viewLifecycleOwner, Observer {
             yojnaTitle.text = it.get("title").toString()
             yojnaDesc.text = it.get("description").toString()

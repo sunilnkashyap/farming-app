@@ -125,15 +125,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="7dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/round_borderless_general"
             android:backgroundTint="@color/colorThird"
             android:padding="7dp"
-            android:text="Buy All"
+            android:text="@string/cart_buy_all"
             android:textAllCaps="false"
             android:textColor="#fff"
             android:textSize="21sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.461"
             app:layout_constraintStart_toStartOf="parent" />
 
 

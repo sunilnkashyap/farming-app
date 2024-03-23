@@ -150,6 +150,12 @@ class CartFragment : Fragment(), CartItemBuy {
 
 
         buyAllBtn.setOnClickListener {
+//            Toast.makeText(this@CartFragment, "Its a toast!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                activity!!.applicationContext,
+                "Payment Processing!",
+                Toast.LENGTH_SHORT
+            ).show()
 //            prePaymentfragment = PrePaymentFragment()
 //            val bundle = Bundle()
 //

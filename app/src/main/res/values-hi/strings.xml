@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Agri India</string>
+    <string name="hello_blank_fragment">नमस्कार रिक्त अंश</string>
+    <string name="open">खुला</string>
+    <string name="close">बंद करना</string>
+    <string name="loading">लोड हो रहा है...</string>
+    <string name="key_id">कुंजी आईडी</string>
+    <string name="change_language">भाषा बदलें</string>
+    <string name="menu_ecommerce">ई-कॉमर्स</string>
+    <string name="menu_apmc_updates">एपीएमसी अपडेट</string>
+    <string name="menu_create_post">पोस्ट बनाएं</string>
+    <string name="menu_community_network">सामुदायिक नेटवर्क</string>
+    <string name="menu_weather_forecast">मौसम पूर्वानुमान</string>
+    <string name="menu_my_order">मेरे आदेश</string>
+
+    <string name="menu_change_language">भाषा बदलें</string>
+
+    <string name="menu_logout">लॉग आउट</string>
+    <string name="dash_articles">सामग्री</string>
+    <string name="dash_products">उत्पादों</string>
+    <string name="cart_buy_all">सभी खरीद</string>
+    <string name="order_payment">भुगतान आदेश</string>
+    <string name="full_name">पूरा नाम</string>
+    <string name="address">इलाके/सड़क का नाम</string>
+
+    <string name="city">शहर</string>
+    <string name="state">राज्य</string>
+    <string name="pincode">पिन कोड</string>
+    <string name="mobile_number">मोबाइल नंबर</string>
+
+
+    <string name="address_type">पता मुद्रलेख</string>
+    <string name="payment_proceed">भुगतान के साथ आगे बढ़ें</string>
+    <string name="buy_now">अभी खरीदें</string>
+
+
+    <string name="bottom_nav_home">घर</string>
+    <string name="bottom_nav_posts">पदों</string>
+    <string name="bottom_nav_apmc">एपीएमसी</string>
+    <string name="bottom_nav_ecommerce">ई-कॉमर्स</string>
+</resources>
